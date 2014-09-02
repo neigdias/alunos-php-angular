@@ -1,0 +1,20 @@
+<html lang="pt-BR" ng-app="app">
+<head>
+  <meta charset="utf-8"/>
+  <title>Listagem de alunos</title>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+  <script src="public/app.js"></script>    
+</head>
+<body>
+  <div ng-controller="MyCtrl">
+    Aluno<input type="text" class="form-control input-lg" ng-model="aluno.nome" placeholder="Nome do aluno" autofocus autocomplete="off">
+    <input type="button" ng-click="incluir(aluno.nome)" value="Incluir">
+
+    <div class="autocomplete" ng-show="completing">
+        <a class="link" href="alunolista.php?id={{dica.nome}}" ng-repeat="dica in dicas">
+           <br>{{dica.nome}}
+        </a>
+    </div>
+  </div>  
+</body>
+</html>
