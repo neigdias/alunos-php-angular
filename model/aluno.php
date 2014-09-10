@@ -31,7 +31,7 @@ public function setMateria($idMateria){
 
 public function save() { 
   //logica para salvar cliente no banco 
-  include_once "conexao.php";
+  include_once "../conexao.php";
 
 	$sql = "insert into alunos(nome, end, id_materia) values(?,'.',?)";  
 
@@ -47,7 +47,7 @@ public function update() {
 } 
 
 public function remove() { 
-  include_once "conexao.php";
+  include_once "../conexao.php";
 
 	$sql = "delete from alunos where id = ?";  
 
@@ -59,15 +59,28 @@ public function remove() {
 } 
 
 public function listAll() { 
-  include_once "conexao.php";
+  include_once "../conexao.php";
 
-	$sql = "select id, nome from alunos ";  
+	$sql = "select id, nome from alunos order by nome ";
 
 	$query = mysqli_query($con, $sql);
 	while($item = mysqli_fetch_array($query)){
 	  $rows[] = $item;
 	}
 	return json_encode($rows);
-} 
+}
+
+public function lista($pId){
+  include_once "../conexao.php";
+
+	$sql = "select id, nome from alunos where id = $pId";  
+
+	$query = mysqli_query($con, $sql);
+	while($item = mysqli_fetch_array($query)){
+	  $rows[] = $item;
+	}
+	return json_encode($rows);
+}
+
 }
 ?>

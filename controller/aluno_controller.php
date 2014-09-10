@@ -19,8 +19,17 @@
 			echo $aluno->save();
 			break;
 		case 'GET':
-			$aluno = new Aluno();			
-			echo $aluno->listAll();
+			$aluno = new Aluno();
+      
+      if(isset($_SERVER['PATH_INFO']))
+        $id = explode('/',$_SERVER['PATH_INFO']);
+      else
+        $id = 0;
+      
+      if ($id == 0)
+			  echo $aluno->listAll();
+      else
+        echo $aluno->lista($id[1]);
 			break;
 		case 'DELETE':
 		  $objData = json_decode($data);
